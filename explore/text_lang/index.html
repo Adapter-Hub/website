@@ -1,0 +1,1224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    
+        <!-- Global site tag (gtag.js)  -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169190162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169190162-1');
+        </script>
+    
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+
+    <link rel="icon" type="image/png" href="/static/adapter-bert-head.png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Pygments -->
+    <link rel="stylesheet" href="/pygments.css">
+    <!-- CSS -->
+    
+        <link rel="stylesheet" href="/static/gen/packed.css?8a7d22d9">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <!-- JS -->
+    
+        <script type="text/javascript" src="/static/gen/packed.js?2800c204"></script>
+    
+
+    <title>AdapterHub -  Explore </title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/static/adapter-bert.png" width="28" class="bert"/>
+            <span class="align-middle">AdapterHub</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-dark" style="font-size:28px"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown-divider d-md-none"></div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/explore/">
+                        <i class="fas fa-binoculars"></i>&nbsp; Explore
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/contributing.html">
+                        <i class="fas fa-upload"></i>&nbsp; Upload
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.adapterhub.ml/">
+                        <i class="fas fa-book"></i>&nbsp; Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/">
+                        <i class="fas fa-bullhorn"></i>&nbsp; Blog
+                    </a>
+                </li>
+                <li class="nav-item separator d-none d-md-inline-block"></li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://github.com/adapter-hub">
+                        <i class="fab fa-github"></i>&nbsp;
+                    </a>
+                </li>
+                <li class="nav-item nav-secondary justify-content-end d-none d-md-inline-block">
+                    <a class="nav-link" href="https://twitter.com/adapterhub">
+                        <i class="fab fa-twitter"></i>&nbsp;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="Header" class="jumbotron jumbotron-fluid py-lg-5">
+    <div class="container">
+        
+    <div class="row adapter-nav mb-4" id="AdapterTypeNav">
+        <div class="col-lg-2 mb-2">
+            <h1>
+                 Explore 
+            </h1>
+        </div>
+        <div class="col-lg-5 col-xl-4">
+            <div class="navigation">
+                <p>Adapters for</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/explore/text_task/">
+                            Tasks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="/explore/text_lang/">
+                            Languages
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg documentation mt-2 mt-lg-0">
+            <i class="fa fa-book"></i>
+            Adapter module for the text modality that captures language-specific knowledge which can be
+applied to any downstream task.
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="text" class="form-control form-control-lg" id="TypeToSearch"
+                   placeholder="Type to filter languages...">
+        </div>
+    </div>
+
+    </div>
+</div>
+
+<div class="container pb-3 pb-md-5">
+    
+    
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Arabic
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Arabic
+Language Family: Afro-Asiatic
+iso: ar"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ar/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Arabic language on Wikipedia.
+Arabic is a Semitic language that first emerged in the 1st to 4th centuries CE.
+It is now the lingua franca of the Arab world.
+
+
+                                    
+                                    <span class="invisible">Arabic</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Burmese
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Burmese alphabet
+Language Family: Sino-Tibetan
+iso: my"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/my/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Burmese language on Wikipedia.
+The Burmese language is a Sino-Tibetan language spoken in Myanmar where it is an official language and the language
+of the Bamar people,...
+
+                                    
+                                    <span class="invisible">Burmese</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Chinese
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Simplified Chinese, Traditional Chinese
+Language Family: Sino-Tibetan
+iso: zh"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/zh/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Chinese language on Wikipedia.
+Chinese is a family of East Asian analytic languages that form the Sinitic branch of the Sino-Tibetan languages.
+
+
+                                    
+                                    <span class="invisible">Chinese</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">English
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: en"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/en/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the English language on Wikipedia.
+English is a West Germanic language that was first spoken in early medieval England and eventually became a
+global lingua franca.
+
+
+                                    
+                                    <span class="invisible">English</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Estonian
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Uralic
+iso: et"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/et/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Estonian language on Wikipedia.
+Estonian is a Uralic language of the Finnic branch spoken in Estonia.
+
+
+                                    
+                                    <span class="invisible">Estonian</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Finnish
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Uralic
+iso: fi"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/fi/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Finnish language on Wikipedia.
+Finnish, whose endonym is suomi or suomen kieli is a Uralic language of the Finnic branch spoken by the majority of
+the population in...
+
+                                    
+                                    <span class="invisible">Finnish</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">French
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: fr"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/fr/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the French language on Wikipedia.
+French or la langue française is a Romance language of the Indo-European family.
+
+
+                                    
+                                    <span class="invisible">French</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">German
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: de"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/de/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the German language on Wikipedia.
+German is a West Germanic language that is mainly spoken in Central Europe.
+
+
+                                    
+                                    <span class="invisible">German</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Greek
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Greek alphabet
+Language Family: Indo-European
+iso: el"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/el/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Greek language on Wikipedia.
+Greek is an independent branch of the Indo-European family of languages, native to Greece, Cyprus,
+Albania and other parts of the Eastern...
+
+                                    
+                                    <span class="invisible">Greek</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Guarani
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Tupian
+iso: gn"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/gn/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Guarani language on Wikipedia.
+Guarani specifically the primary variety known as Paraguayan Guarani, is an indigenous language of South America
+that belongs to the...
+
+                                    
+                                    <span class="invisible">Guarani</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Haitian Creole
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: French Creole
+iso: ht"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ht/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Haitian Creole language on Wikipedia.
+Haitian Creole is a French-based creole language spoken by 10–12 million people worldwide,
+and the only language of most Haitians.
+
+
+                                    
+                                    <span class="invisible">Haitian Creole</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Hindi
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Devanagari
+Language Family: Indo-European
+iso: hi"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/hi/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Hindi language on Wikipedia.
+Hindi, or more precisely Modern Standard Hindi, is an Indo-Aryan language spoken in India.
+
+
+                                    
+                                    <span class="invisible">Hindi</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Icelandic
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: is"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/is/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Icelandic language on Wikipedia.
+Icelandic is a North Germanic language spoken by about 314,000 people, the vast majority of whom live in Iceland
+where it is the national...
+
+                                    
+                                    <span class="invisible">Icelandic</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Ilocano
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Austronesian
+iso: ilo"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ilo/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Ilocano language on Wikipedia.
+Ilocano (also Ilokano) is an Austronesian language spoken in the Philippines.
+
+
+                                    
+                                    <span class="invisible">Ilocano</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Indonesian
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Austronesisch
+iso: id"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/id/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Indonesian language on Wikipedia.
+Indonesian is the official language of Indonesia. It is a standardised
+variety of Malay, an Austronesian language that has been used as...
+
+                                    
+                                    <span class="invisible">Indonesian</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Italian
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: it"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/it/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Italian language on Wikipedia.
+Italian or lingua italiana, is a Romance language of the Indo-European language family. Italian descended from the
+Vulgar Latin of the...
+
+                                    
+                                    <span class="invisible">Italian</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Japanese
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Kanji, Kana
+Language Family: Japonic
+iso: ja"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ja/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Japanese language on Wikipedia.
+Japanese is an East Asian language spoken by about 128 million people, primarily in Japan, where it is the national
+language.
+
+
+                                    
+                                    <span class="invisible">Japanese</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Javanese
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Austronesian
+iso: jv"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/jv/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Javanese language on Wikipedia.
+Javanese is the language of the Javanese people from the central and eastern parts of the island of Java, in
+Indonesia.
+
+
+                                    
+                                    <span class="invisible">Javanese</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Korean
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Hangul
+Language Family: Koreanic
+iso: ko"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ko/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Korean language on Wikipedia.
+The Korean language is an East Asian language spoken by about 77 million people.
+
+
+                                    
+                                    <span class="invisible">Korean</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Meadow Mari
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Cyrillic
+Language Family: Uralic
+iso: mhr"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mhr/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Meadow Mari language on Wikipedia.
+Meadow Mari or Meadow-Eastern Mari or Eastern Mari is a standardised dialect of the Mari language used by about half
+a million people...
+
+                                    
+                                    <span class="invisible">Meadow Mari</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Min Dong
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Chinese characters
+Language Family: Sino-Tibetan
+iso: cdo"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/cdo/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Min Dong language on Wikipedia.
+Eastern Min or Min Dong, is a branch of the Min group of Sinitic languages of China.
+
+
+                                    
+                                    <span class="invisible">Min Dong</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Mingrelian
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Georgian script
+Language Family: Kartvelian
+iso: xmf"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/xmf/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Mingrelian language on Wikipedia.
+Megrelian is a Kartvelian language spoken in Western Georgia (regions of Samegrelo and Abkhazia), primarily by the
+Megrelians.
+
+
+                                    
+                                    <span class="invisible">Mingrelian</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Māori
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Austronesian
+iso: mi"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/mi/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Māori language on Wikipedia.
+Māori, also known as te reo (&#39;the language&#39;), is an Eastern Polynesian language spoken by the Māori people, the
+indigenous population of New Zealand.
+
+
+                                    
+                                    <span class="invisible">Māori</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Quechua
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Quechuan
+iso: qu"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/qu/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Quechuan language on Wikipedia.
+Quechua, usually called Runasimi (&#34;people&#39;s language&#34;) in Quechuan languages, is an indigenous language family spoken
+by the Quechua...
+
+                                    
+                                    <span class="invisible">Quechua</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Russian
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Cyrillic
+Language Family: Indo-European
+iso: ru"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ru/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Russian language on Wikipedia.
+Russian is an East Slavic language, which is an official language in Russia, Belarus, Kazakhstan, Kyrgyzstan, as well
+as being widely used...
+
+                                    
+                                    <span class="invisible">Russian</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Spanish
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Indo-European
+iso: es"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/es/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Spanish language on Wikipedia.
+Spanish, or Castilian, is a Romance language that originated in the Iberian Peninsula and today is a global
+language with more than 483...
+
+                                    
+                                    <span class="invisible">Spanish</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Swahili
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Niger–Congo
+iso: sw"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/sw/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Swahili language on Wikipedia.
+Swahili, also known by its native name Kiswahili, is a Bantu language and the first language of the Swahili people.
+
+
+                                    
+                                    <span class="invisible">Swahili</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Tamil
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Tamil
+Language Family: Dravidian
+iso: ta"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/ta/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Tamil language on Wikipedia.
+Tamil, About this soundpronunciation is a Dravidian language predominantly spoken by the Tamil people of India and
+Sri Lanka, and by the...
+
+                                    
+                                    <span class="invisible">Tamil</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Thai
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Thai script
+Language Family: Kra–Dai
+iso: th"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/th/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Thai language on Wikipedia.
+Thai, Central Thai, is the official language of Thailand and the first language of the Central Thai people.
+
+
+                                    
+                                    <span class="invisible">Thai</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Turkish
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Turkic
+iso: tr"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/tr/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Turkish language on Wikipedia.
+Turkish, also referred to as Istanbul Turkish or Turkey Turkish, is the most widely spoken of the Turkic
+languages, with around 70 to 80...
+
+                                    
+                                    <span class="invisible">Turkish</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Turkmen
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Turkic
+iso: tk"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/tk/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Turkmen language on Wikipedia.
+Turkmen is an Oghuz Turkic language spoken by the Turkmens of Central Asia and the official language of Turkmenistan.
+
+
+                                    
+                                    <span class="invisible">Turkmen</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+        <div class="task mb-4">
+            <h3 class="mb-2">Vietnamese
+            <i class="fas fa-info-circle activate-tooltip" data-toggle="tooltip" data-placement="top" title="Script: Latin
+Language Family: Austroasiatic
+iso: vi"></i>
+            </h3>
+            <div class="row subtasks">
+                
+                    <div class="col-lg-6 subtask my-lg-3 my-2">
+                        <a class="btn card bg-light border-0" href="/explore/vi/wiki/">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    wiki
+                                    
+                                </h5>
+                                <p class="card-text">
+                                    Language modeling for the Vietnamese language on Wikipedia.
+Vietnamese is an Austroasiatic language that originated in Vietnam, where it is the national and official language.
+Spoken natively by...
+
+                                    
+                                    <span class="invisible">Vietnamese</span>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    
+
+    <div id="NoSearchResult" class="d-none">
+        <div class="alert alert-light">
+            No tasks and datasets for <span class="query font-weight-bold"></span>
+        </div>
+        <div class="mt-5">
+            <div class="speech-bubble">
+                <p class="m-0">Add your
+                    language
+                    to AdapterHub,
+                    <br/>
+                    it's super awesome!
+                </p>
+                <div class="mt-3 text-right">
+                    <a class="text-white btn btn-sm border-white" href="https://docs.adapterhub.ml/contributing.html#add-your-pre-trained-adapter">
+                        <i class="fas fa-rocket"></i> Get started
+                    </a>
+                </div>
+            </div>
+            <img src="/static/adapter-bert.png" height="350"/>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            $('#TypeToSearch').on('input paste change', function() {
+                const searchBox = $('#TypeToSearch');
+                const searchInfo = $('#SearchInfo');
+                const q = searchBox.val().toLowerCase();
+
+                if(q.length === 0) {
+                    $('.subtask, .task').removeClass('d-none').addClass('d-block');
+                    $('#NoSearchResult').addClass('d-none').removeClass('d-block');
+                } else {
+                    searchInfo.removeClass('d-none')
+                    // hide subtasks
+                    $('.subtask').each(function () {
+                        var visible = $(this).text().toLowerCase().includes(q);
+                        if (visible) {
+                            $(this).removeClass('d-none').addClass('d-block');
+                        } else {
+                            $(this).addClass('d-none').removeClass('d-block');
+                        }
+                    })
+
+                    // hide tasks if no subtasks are present
+                    $('.task').each(function () {
+                        var visible = $(this).find('.subtask.d-block').length > 0;
+                        if (visible) {
+                            $(this).removeClass('d-none').addClass('d-block');
+                        } else {
+                            $(this).addClass('d-none').removeClass('d-block');
+                        }
+                    });
+
+                    // count search results
+                    const nResults = $('.subtask.d-block').length;
+                    if(nResults > 0) {
+                        $('#NoSearchResult').addClass('d-none');
+                    } else {
+                        $('#NoSearchResult').removeClass('d-none')
+                            .find('.query').text(searchBox.val());
+                    }
+                }
+            });
+        });
+    </script>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="float-md-right text-center text-md-right">
+            <a href="https://arxiv.org/abs/2007.07779" target="_blank">Paper</a>
+            <span class="text-black-30 px-1">|</span>
+            <a href="/imprint-privacy/">Imprint & Privacy</a>
+        </p>
+        <p class="text-muted text-center text-md-left">Brought to you with ❤️ &nbsp;by authors from:</p>
+        <div class="text-center text-md-left logos">
+            <div class="r1">
+                <img src="/static/logos/ukp_logo.png" class="logo logo-ukp">
+                <img src="/static/logos/tu_logo_web.svg" class="logo logo-tud">
+                <img src="/static/logos/nyu_short_color.png" class="logo logo-nyu">
+            </div>
+            <div class="r2">
+                <img src="/static/logos/cambridge.png" class="logo logo-cambridge">
+                <img src="/static/logos/DeepMind_logo.png" class="logo logo-deepmind">
+            </div>
+        </div>
+        </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        codecopy('pre') // your code tag selector!
+        $('.activate-tooltip').tooltip();   // bootstrap tooltips
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#d7f0f4"
+        },
+        "button": {
+        "background": "#39b3c6",
+        "text": "#ffffff"
+        }
+    },
+    "theme": "classic"
+    });
+</script>
+</body>
+</html>

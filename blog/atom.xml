@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://adapterhub.ml/blog/</id>
+  <title>The AdapterHub Blog</title>
+  <updated>2021-02-05T15:05:46.092988+00:00</updated>
+  <link href="https://adapterhub.ml/blog/"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator>
+  <subtitle>The latest news from AdapterHub</subtitle>
+  <entry>
+    <id>https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub</id>
+    <title>Adapting Transformers with AdapterHub</title>
+    <updated>2020-11-17T00:00:00+00:00</updated>
+    <author>
+      <name>Clifton Poth</name>
+    </author>
+    <content type="html">&lt;p&gt;Transformer models pre-trained on massive amounts of text data and subsequently fine-tuned on target tasks have led to considerable advances in NLP, achieving state-of-the-art results across the board. 
+However, models such as BERT (&lt;a href="https://arxiv.org/pdf/1810.04805.pdf"&gt;Devlin et al., 2019&lt;/a&gt;) and RoBERTa (&lt;a href="https://arxiv.org/pdf/1907.11692.pdf"&gt;Liu et al., 2019&lt;/a&gt;) consist of several millions of parameters, and thus, sharing and distributing fully fine-tuned models for each individual downstream task can be prohibitive. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Adapters&lt;/strong&gt; are a light-weight alternative to full model fine-tuning, consisting of only a tiny set of newly introduced parameters at every transformer layer.
+Adapters overcome several limitations typically observed with full model fine-tuning:
+they are &lt;strong&gt;parameter-efficient&lt;/strong&gt;, they &lt;strong&gt;speed up training iterations&lt;/strong&gt;, and they are &lt;strong&gt;shareable&lt;/strong&gt; and &lt;strong&gt;composable&lt;/strong&gt; due to their modularity and compact size.
+Moreover, adapters usually perform &lt;strong&gt;on-par with state-of-the-art full fine-tuning&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With multiple different adapter architectures and a wide variety of pre-trained transformers available, training, sharing and re-using adapters is not straightforward.
+As a solution,  &lt;strong&gt;&lt;a href="https://arxiv.org/pdf/2007.07779.pdf"&gt;AdapterHub, A Framework for Adapting Transformers&lt;/a&gt;&lt;/strong&gt; provides a unified interface to different adapter architectures and composition techniques, making them widely accessible to the research community.
+Built on top of &lt;a href="https://github.com/huggingface/transformers"&gt;Huggingface's Transformers framework&lt;/a&gt;, the AdapterHub has access to a large base of pre-trained transformers.
+In the following, we will go through the process of training, sharing, and composing adapters with AdapterHub.&lt;/p&gt;
+&lt;h2&gt;A Short Introduction to Adapters&lt;/h2&gt;
+&lt;figure id="_caption-1"&gt;
+&lt;img alt="" src="/static/images/steps.gif" title="Steps of working with adapters" /&gt;
+&lt;figcaption&gt;&lt;span&gt;Figure&amp;nbsp;1:&lt;/span&gt; Steps of working with adapters&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Adapters provide a lightweight alternative to fully fine-tuning a pre-trained language model on a downstream task.
+For a transformer-based architecture, a small set of new parameters is introduced in every transformer layer.
+While different adapter architectures are possible, a simple layout using a down- and an up-projection layer first introduced by &lt;a href="https://arxiv.org/pdf/1902.00751.pdf"&gt;Houlsby et al. (2020)&lt;/a&gt; has proven to work well (see Figure 1 for illustration).
+In many cases, adapters perform on-par with fully fine-tuned models.&lt;/p&gt;
+&lt;p&gt;During training on the target task, all weights of the pre-trained language model are kept fix.
+The only weights to be updated are those introduced by the adapter modules.
+This results in modular knowledge representations which subsequently can be easily extracted from the underlying language model.
+The extracted adapter modules then can be distributed independently and plugged into a language model dynamically.
+The encapsulated character of adapters also allows for easy exchange and composition of different adapters (&lt;a href="https://arxiv.org/pdf/2005.00247.pdf"&gt;Pfeiffer et al., 2020a&lt;/a&gt;).
+Since this workflow of using adapters is very universal, it can potentially be applied to a wide range of different use cases.
+As an example, adapters have been used successfully for zero-shot cross-lingual transfer between different tasks (&lt;a href="https://arxiv.org/pdf/2005.00052.pdf"&gt;Pfeiffer et al., 2020b&lt;/a&gt;).
+Figure 1 illustrates the described adapter workflow.&lt;/p&gt;
+&lt;figure id="_caption-2"&gt;
+&lt;img alt="" src="/static/images/size_comparison.png" title="Size comparison of a fully fine-tuned model and an adapter" /&gt;
+&lt;figcaption&gt;&lt;span&gt;Figure&amp;nbsp;2:&lt;/span&gt; Size comparison of a fully fine-tuned model and an adapter&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Using adapters provides various benefits, especially in parameter efficiency.
+The amount of updated adapter parameters are only about 1% of the fully fine-tuned model and in many cases only requires a few Megabytes of storage space.
+This makes it easy to share adapters, store adapters for many different tasks and load additional adapters on-the-fly.
+Additionally, their compact size with the majority of weights bein frozen, makes adapters a computationally efficient fine-tuning choice (&lt;a href="https://arxiv.org/pdf/2010.11918.pdf"&gt;Rücklé et al., 2020&lt;/a&gt;).&lt;/p&gt;
+&lt;h2&gt;What is AdapterHub?&lt;/h2&gt;
+&lt;p&gt;With AdapterHub, we have developed a framework which makes working with adapters straightforward.
+AdapterHub is divided into two core components: &lt;a href="https://github.com/Adapter-Hub/adapter-transformers"&gt;adapter-transformers&lt;/a&gt;, a library built on top of HuggingFace &lt;code&gt;transformers&lt;/code&gt; that integrates adapter support into various popular Transformer-based language models, and &lt;a href="https://adapterhun.ml/explore"&gt;the Hub&lt;/a&gt;, an open platform for sharing, exploring and consuming pre-trained adapters.&lt;/p&gt;
+&lt;figure id="_caption-3"&gt;
+&lt;img alt="" src="/static/images/lifecycle.png" title="The AdapterHub lifecycle" /&gt;
+&lt;figcaption&gt;&lt;span&gt;Figure&amp;nbsp;3:&lt;/span&gt; The AdapterHub lifecycle&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Based on Figure 3, we'll go through the lifecycle of working with AdapterHub on a higher level:
+HuggingFace &lt;code&gt;transformers&lt;/code&gt; (🤗) builds the backbone of our framework.
+A user who wants to train an adapter (👩🏾‍💻) loads a pre-trained language model (🤖) from 🤗.
+In ①, new adapter modules are introduced to the loaded language model.
+Afterwards, 👩🏾‍💻 trains the adapter on a downstream task (②).
+As soon as training has completed, 👩🏾‍💻 can extract the trained adapter weights from the (unaltered) 🤖 in ③.
+👩🏾‍💻 packs the adapter weights and uploads them to the Hub.
+Here, 👨🏼‍💻 can find the pre-trained adapter in step ④.
+Together with downloading the matching 🤖 from 🤗, 👨🏼‍💻 then can download the adapter from the Hub and integrate it into his own model (⑤).
+In ⑥, he lastly can apply 👩🏾‍💻's adapter for his own purposes.&lt;/p&gt;
+&lt;p&gt;In the following, we will have a look at some of these steps in more detail.&lt;/p&gt;
+&lt;h2&gt;Training an Adapter&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/01_Adapter_Training.ipynb" target="_blank"&gt;
+&lt;img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Training an adapter on a downstream task is a straightforward process using &lt;code&gt;adapter-transformers&lt;/code&gt; which can be installed via pip:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install adapter-transformers
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This package is fully compatible with HuggingFace's &lt;code&gt;transformers&lt;/code&gt; library and can act as a drop-in replacement. Therefore, we can instantiate a pre-trained language model and tokenizer in the familiar way:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RobertaTokenizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RobertaConfig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RobertaModelWithHeads&lt;/span&gt;
+
+&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RobertaTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;roberta-base&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RobertaConfig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;roberta-base&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;num_labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;id2label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;👎&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;👍&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RobertaModelWithHeads&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;roberta-base&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There is one difference compared to HuggingFace transformers in the code above:
+We use the new class &lt;code&gt;RobertaModelWithHeads&lt;/code&gt; which allows a more flexible way of configuring prediction heads.&lt;/p&gt;
+&lt;p&gt;The next steps configure our adapter setup. Note that these are the only lines additionally needed to switch from full fine-tuning to adapter training.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add a new adapter&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotten_tomatoes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_task&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Add a matching classification head&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_classification_head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotten_tomatoes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Activate the adapter&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;train_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotten_tomatoes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We add a new adapter to our model by calling &lt;code&gt;add_adapter()&lt;/code&gt;. We pass a name (&lt;code&gt;"rotten_tomatoes"&lt;/code&gt;) and &lt;a href="https://docs.adapterhub.ml/adapters.html#adapter-types"&gt;the type of adapter&lt;/a&gt; (task adapter). Next, we add a binary classification head. It's convenient to give the prediction head the same name as the adapter. This allows us to activate both together in the next step. The &lt;code&gt;train_adapter()&lt;/code&gt; method does two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It freezes all weights of the pre-trained model so only the adapter weights are updated during training.&lt;/li&gt;
+&lt;li&gt;It activates the adapter and the prediction head such that both are used in every forward pass.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All the rest of the training process is identical to a full fine-tuning approach. Check out &lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/01_Adapter_Training.ipynb"&gt;the Colab notebook on adapter training&lt;/a&gt; to see the full code.&lt;/p&gt;
+&lt;p&gt;In the end, the trained adapter can be exported to the file system using a single line of code:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;./final_adapter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rotten_tomatoes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Interacting with the Hub&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb" target="_blank"&gt;
+&lt;img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The adapter weights trained in the previous section subsequently can be distributed via the Hub, the second core component of the AdapterHub framework.
+The Hub infrastructure is based on plain YAML description files contributed to a central GitHub repository.
+The full process of contributing pre-trained adapters is described &lt;a href="https://docs.adapterhub.ml/contributing.html"&gt;in our documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://adapterhub.ml/explore"&gt;Explore section&lt;/a&gt; of the AdapterHub website acts as the starting point for discovering and consuming available pre-trained adapters. A matching adapter can be selected by task domain, training dataset, model architecture and adapter architecture and loaded into &lt;code&gt;adapter-transformers&lt;/code&gt; in the following.&lt;/p&gt;
+&lt;p&gt;Before loading the adapter, we instantiate the model we want to use, a pre-trained &lt;code&gt;bert-base-uncased&lt;/code&gt; model from HuggingFace.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AutoModelWithHeads&lt;/span&gt;
+
+&lt;span class="n"&gt;tokenizer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoTokenizer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bert-base-uncased&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AutoModelWithHeads&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_pretrained&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;bert-base-uncased&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Using &lt;code&gt;load_adapter()&lt;/code&gt;, we download and add a pre-trained adapter from the Hub. The first parameter specifies the name of the adapter whereas the second selects the &lt;a href="https://docs.adapterhub.ml/adapters.html#adapter-architectures"&gt;adapter architectures&lt;/a&gt; to search for.&lt;/p&gt;
+&lt;p&gt;Also note that most adapters come with a prediction head included. Thus, this method will also load the question answering head trained together with the adapter.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;adapter_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;qa/squad1@ukp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;houlsby&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With &lt;code&gt;set_active_adapters()&lt;/code&gt; we tell our model to use the adapter we just loaded in every forward pass.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_active_adapters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;adapter_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Again, these are all changes needed to set up a pre-trained language model with a pre-trained adapter.
+The rest of the inference is identical to a setup without adapters.
+To see a full example, check out &lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/02_Adapter_Inference.ipynb"&gt;the Colab notebook for adapter inference&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Adapter Composition&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb" target="_blank"&gt;
+&lt;img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As presented earlier, adapters are especially suitable for various kinds of compositions on a new target task.
+One of these composition approaches is &lt;em&gt;AdapterFusion&lt;/em&gt; (&lt;a href="https://arxiv.org/pdf/2005.00247.pdf"&gt;Pfeiffer et al., 2020&lt;/a&gt;) which is also tightly integrated into AdapterHub.&lt;/p&gt;
+&lt;p&gt;The knowledge learned by multiple pre-trained adapters from the Hub can be leveraged to solve a new target task.
+In this setup, only a newly introduced fusion layer is trained while the rest of the model is kept fix.&lt;/p&gt;
+&lt;p&gt;First, we load three adapters pre-trained on different tasks from the Hub: MultiNLI, QQP and QNLI. As we don't need their prediction heads, we pass &lt;code&gt;with_head=False&lt;/code&gt; to the loading method. Next, we add a new fusion layer that combines all the adapters we've just loaded. Finally, we add a new classification head for our target task on top.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;transformers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Load the pre-trained adapters we want to fuse&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nli/multinli@ukp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;load_as&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;multinli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;with_head&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sts/qqp@ukp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;with_head&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_adapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nli/qnli@ukp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;AdapterType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text_task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;with_head&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Add a fusion layer for all loaded adapters&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_fusion&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;multinli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qqp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qnli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Add a classification head for our target task&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_classification_head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id2label&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The last preparation step is to define and activate our adapter setup. Similar to &lt;code&gt;train_adapter()&lt;/code&gt;, &lt;code&gt;train_fusion()&lt;/code&gt; does two things: It freezes all weights of the model (including adapters!) except for the fusion layer and classification head. It also activates the given adapter setup to be used in very forward pass.&lt;/p&gt;
+&lt;p&gt;The syntax for the adapter setup (which is also applied to other methods such as &lt;code&gt;set_active_adapters()&lt;/code&gt;) works as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a single string is interpreted as a single adapter&lt;/li&gt;
+&lt;li&gt;a list of strings is interpreted as a &lt;strong&gt;stack&lt;/strong&gt; of adapters&lt;/li&gt;
+&lt;li&gt;a &lt;em&gt;nested&lt;/em&gt; list of strings is interpreted as a &lt;strong&gt;fusion&lt;/strong&gt; of adapters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Unfreeze and activate fusion setup&lt;/span&gt;
+&lt;span class="n"&gt;adapter_setup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;multinli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qqp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qnli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;train_fusion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;adapter_setup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;See the full training example in &lt;a href="https://colab.research.google.com/github/Adapter-Hub/adapter-transformers/blob/master/notebooks/03_Adapter_Fusion.ipynb"&gt;the Colab notebook on AdapterFusion&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Adapters are a promising new approach to transfer learning in NLP, providing benefits in efficiency and modularity.
+AdapterHub provides tools for the full lifecycle of interacting with adapters.
+The integration into the successful HuggingFace &lt;code&gt;transformers&lt;/code&gt; framework makes it straightforward to adapt training setups to adapters.
+AdapterHub is continuously evolving with the addition of adapter support to new models, the integration of new application scenarios for adapters and a growing platform of pre-trained adapter modules.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Devlin, J., Chang, M., Lee, K., &amp;amp; Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. NAACL-HLT.&lt;/li&gt;
+&lt;li&gt;Houlsby, N., Giurgiu, A., Jastrzebski, S., Morrone, B., Laroussilhe, Q.D., Gesmundo, A., Attariyan, M., &amp;amp; Gelly, S. (2019). Parameter-Efficient Transfer Learning for NLP. ICML.&lt;/li&gt;
+&lt;li&gt;Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., &amp;amp; Stoyanov, V. (2019). RoBERTa: A Robustly Optimized BERT Pretraining Approach. ArXiv, abs/1907.11692.&lt;/li&gt;
+&lt;li&gt;Pfeiffer, J., Kamath, A., Rücklé, A., Cho, K., &amp;amp; Gurevych, I. (2020). AdapterFusion: Non-Destructive Task Composition for Transfer Learning. ArXiv, abs/2005.00247.&lt;/li&gt;
+&lt;li&gt;Pfeiffer, J., Vulic, I., Gurevych, I., &amp;amp; Ruder, S. (2020). MAD-X: An Adapter-based Framework for Multi-task Cross-lingual Transfer. ArXiv, abs/2005.00052.&lt;/li&gt;
+&lt;li&gt;Rücklé, A., Geigle, G., Glockner, M., Beck, T., Pfeiffer, J., Reimers, N., &amp;amp; Gurevych, I. (2020). AdapterDrop: On the Efficiency of Adapters in Transformers. ArXiv, abs/2010.11918.&lt;/li&gt;
+&lt;li&gt;Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault, T., Louf, R., Funtowicz, M., &amp;amp; Brew, J. (2019). HuggingFace's Transformers: State-of-the-art Natural Language Processing. ArXiv, abs/1910.03771.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <link href="https://adapterhub.ml/blog/2020/11/adapting-transformers-with-adapterhub" rel="alternate"/>
+    <summary>Adapters are a new, efficient and composable alternative to full fine-tuning of pre-trained language models.
+AdapterHub makes working with adapters accessible by providing a framework for training, sharing, discovering and consuming adapter modules.
+This post provides an extensive overview.
+</summary>
+    <published>2020-11-17T00:00:00+00:00</published>
+  </entry>
+</feed>
